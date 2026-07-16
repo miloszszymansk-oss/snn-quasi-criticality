@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CriticalCortex — live SOqC</title>
+<link rel="stylesheet" href="https://unpkg.com/uplot@1.6.30/dist/uPlot.min.css" />
+<style>
+  :root { --bg:#0a0e14; --panel:#111823; --ink:#c9d6e2; --dim:#6b7c90; --exc:#39c2ff; --inh:#ff5a6e; --line:#1e2a3a; }
+  * { box-sizing: border-box; }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--ink);
+    font:13px/1.45 ui-monospace,"SF Mono",Menlo,Consolas,monospace; overflow:hidden; }
+  #app { display:flex; height:100vh; }
+  #stage { position:relative; flex:1; min-width:0; }
+  #stage canvas { display:block; }
+  #overlay { position:absolute; top:14px; left:16px; pointer-events:none; }
+  #overlay h1 { margin:0; font-size:15px; letter-spacing:.5px; font-weight:600; }
+  #overlay .sub { color:var(--dim); font-size:11px; margin-top:2px; }
+  #panel { width:380px; flex:none; background:var(--panel); border-left:1px solid var(--line);
+    padding:16px; overflow-y:auto; }
+  .card { background:#0d141d; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin-bottom:12px; }
+  .card h2 { margin:0 0 8px; font-size:11px; text-transform:uppercase; letter-spacing:.8px; color:var(--dim); font-weight:600; }
+  .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; }
+  .stat b { display:block; font-size:20px; font-weight:600; color:#eaf2fb; }
+  .stat span { color:var(--dim); font-size:10px; text-transform:uppercase; letter-spacing:.6px; }
+  .chart { width:100%; height:120px; }
+  .row { display:flex; align-items:center; gap:10px; margin:6px 0; }
+  .row label { color:var(--dim); font-size:11px; width:66px; }
+  input[type=range] { flex:1; accent-color:var(--exc); }
+  button { background:#16202e; color:var(--ink); border:1px solid var(--line); border-radius:6px;
+    padding:5px 12px; cursor:pointer; font:inherit; }
+  button:hover { border-color:var(--exc); }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--dim); margin-right:6px; }
+  .dot.on { background:#37d67a; } .dot.off { background:var(--inh); }
+  .legend { display:flex; gap:14px; font-size:10px; color:var(--dim); margin-top:4px; }
+  .legend i { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+  button.active { border-color:var(--exc); background:#12314a; color:#eaf2fb; }
+  .cbar { display:inline-block; width:110px; height:10px; border-radius:3px; vertical-align:middle;
+    background:linear-gradient(90deg,#050317,#4d0a5c,#ae1f4d,#f56b17,#fceb8c); }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <div id="overlay">
+      <h1>CriticalCortex · live SOqC</h1>
+      <div class="sub" id="sub">connecting…</div>
+    </div>
+  </div>
+
+  <div id="panel">
+    <div class="card">
+      <h2><span class="dot off" id="conn"></span>state</h2>
+      <div class="stat-grid">
+        <div class="stat"><b id="s-rate">–</b><span>rate (Hz)</span></div>
+        <div class="stat"><b id="s-xbar">–</b><span>⟨x⟩ resource</span></div>
+        <div class="stat"><b id="s-naval">–</b><span>avalanches</span></div>
+        <div class="stat"><b id="s-max">–</b><span>max size</span></div>
+      </div>
+      <div class="legend" id="legend-ei"><span><i style="background:var(--exc)"></i>excitatory</span>
+        <span><i style="background:var(--inh)"></i>inhibitory</span></div>
+      <div class="legend" id="legend-heat" style="display:none">
+        <span>depleted</span><span class="cbar"></span><span>recovered&nbsp;⟨x⟩</span></div>
+    </div>
+
+    <div class="card">
+      <h2>render mode</h2>
+      <div class="row" style="gap:6px">
+        <button id="mode-spikes" class="active">spikes</button>
+        <button id="mode-heat">⟨x⟩ heatmap</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>firing rate (Hz)</h2><div id="c-rate" class="chart"></div>
+    </div>
+    <div class="card">
+      <h2>⟨x⟩ adaptation variable</h2><div id="c-xbar" class="chart"></div>
+    </div>
+    <div class="card">
+      <h2>avalanche size distribution (log–log)</h2><div id="c-hist" class="chart" style="height:150px"></div>
+    </div>
+
+    <div class="card">
+      <h2>controls</h2>
+      <div class="row"><label>playback</label>
+        <input type="range" id="speed" min="1" max="200" value="20" />
+        <span id="speed-val" style="width:54px;text-align:right;color:var(--dim)">20 st/f</span></div>
+      <div class="row"><label>local edges</label>
+        <input type="checkbox" id="edges-toggle" checked style="accent-color:var(--exc)" />
+        <span style="color:var(--dim);font-size:11px">show spatial mesh</span></div>
+      <div class="row"><button id="pause">pause</button>
+        <span id="backend" style="color:var(--dim);font-size:11px"></span></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script src="https://unpkg.com/uplot@1.6.30/dist/uPlot.iife.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["maturin>=1.5,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "criticalcortex"
+version = "0.2.0"
+description = "CriticalCortex — spec-first spiking-network criticality engine (M0-M2)"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.24"]
+
+# Mixed Rust/Python layout:
+#   * python-source = "."         -> the pure-Python package `criticalcortex/` at repo root
+#   * manifest-path               -> the Rust crate lives in criticalcortex_kernel/
+#   * module-name                 -> compiled extension lands INSIDE the package as
+#                                    `criticalcortex._kernel` (canonical maturin mixed layout;
+#                                    the #[pymodule] fn is therefore named `_kernel`).
+[tool.maturin]
+manifest-path = "criticalcortex_kernel/Cargo.toml"
+python-source = "."
+module-name = "criticalcortex._kernel"

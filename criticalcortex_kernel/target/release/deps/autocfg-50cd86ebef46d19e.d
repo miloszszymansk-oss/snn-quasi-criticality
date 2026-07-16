@@ -1,0 +1,10 @@
+/Users/miloszszymanski/Library/Mobile Documents/com~apple~CloudDocs/New project - Claude/criticalcortex_kernel/target/release/deps/autocfg-50cd86ebef46d19e.d: /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/lib.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/error.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/rustc.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/version.rs
+
+/Users/miloszszymanski/Library/Mobile Documents/com~apple~CloudDocs/New project - Claude/criticalcortex_kernel/target/release/deps/libautocfg-50cd86ebef46d19e.rlib: /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/lib.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/error.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/rustc.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/version.rs
+
+/Users/miloszszymanski/Library/Mobile Documents/com~apple~CloudDocs/New project - Claude/criticalcortex_kernel/target/release/deps/libautocfg-50cd86ebef46d19e.rmeta: /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/lib.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/error.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/rustc.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/version.rs
+
+/Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/lib.rs:
+/Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/error.rs:
+/Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/rustc.rs:
+/Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.5.1/src/version.rs:

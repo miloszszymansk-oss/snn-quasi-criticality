@@ -1,0 +1,24 @@
+[package]
+name = "criticalcortex_kernel"
+version = "0.2.0"
+edition = "2021"
+description = "CriticalCortex Rust routing kernel — zero-allocation step_block (SPEC §2.2)."
+license = "MIT OR Apache-2.0"
+
+# cdylib: a C-ABI shared object maturin turns into the Python module criticalcortex._kernel.
+[lib]
+name = "criticalcortex_kernel"
+crate-type = ["cdylib"]
+
+[dependencies]
+# pyo3 + rust-numpy versions are locked together (0.22 <-> 0.22). `extension-module`
+# tells pyo3 not to link libpython (maturin provides the symbols at import time).
+pyo3 = { version = "0.22", features = ["extension-module"] }
+numpy = "0.22"
+# NB: the external drive is an inline splitmix64 counter-hash (bit-identical to NumPy),
+# not a general RNG, so rand/rand_chacha are intentionally NOT dependencies — nothing to
+# match against a Rust RNG. Re-add rand_chacha only if a stream RNG is needed later.
+
+[profile.release]
+opt-level = 3
+strip = false

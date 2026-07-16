@@ -1,0 +1,9 @@
+/Users/miloszszymanski/Library/Mobile Documents/com~apple~CloudDocs/New project - Claude/criticalcortex_kernel/target/release/deps/num_integer-53a537ba4260eb09.d: /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/lib.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/roots.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/average.rs
+
+/Users/miloszszymanski/Library/Mobile Documents/com~apple~CloudDocs/New project - Claude/criticalcortex_kernel/target/release/deps/libnum_integer-53a537ba4260eb09.rlib: /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/lib.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/roots.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/average.rs
+
+/Users/miloszszymanski/Library/Mobile Documents/com~apple~CloudDocs/New project - Claude/criticalcortex_kernel/target/release/deps/libnum_integer-53a537ba4260eb09.rmeta: /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/lib.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/roots.rs /Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/average.rs
+
+/Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/lib.rs:
+/Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/roots.rs:
+/Users/miloszszymanski/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-integer-0.1.46/src/average.rs:
