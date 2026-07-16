@@ -80,8 +80,7 @@ New project - Claude/
         ├── index.html          # UI shell (Three.js + uPlot from CDN)
         └── app.js              # WS client, neuron cloud, live charts
 ### 🧱 System Architecture
-
-![System Architecture](https://github.com/miloszszymansk-oss/snn-quasi-criticality/raw/main/architecture.png)
+![System Architecture](../architecture.png)
 🧱 Architecture Details
 •	Decoupled ticks: One shared SimEngine advances STEPS_PER_FRAME steps per frame; a single paced broadcaster() task emits one render frame per client at ‭$\le$‬ FPS. Many simulation ticks map to one render tick, so the kernel is never throttled by the browser. Stepping runs in a worker thread (asyncio.to_thread) so the event loop stays responsive.
 •	Bounded memory: The AER sink is reset every batch (aer_count[0] ‭$\leftarrow$‬ 0), so an indefinite live run reuses a fixed buffer — nothing grows without bound, and the zero-allocation kernel hot loop is untouched.
